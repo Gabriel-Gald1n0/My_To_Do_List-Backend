@@ -10,10 +10,11 @@ async function bootstrap() {
   app.enableCors({
     origin: 'http://localhost:3000', // quais endereços de ip podem acessar a API
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Metodos utilizados
-    allowedHeaders: 'Content-Type, Accept', //quais headers podem ser enviados
+    allowedHeaders: 'Content-Type, Accept, Authorization', //quais headers podem ser enviados
   });
   //app.enableCors(); //permite que qualquer endereço de ip acesse a API
-  const port = app.get(ConfigService).get('PORT') || 3001;
+  const configService = app.get(ConfigService);
+  const port = configService.get('PORT') || 3001;
   await app.listen(port);
 }
 bootstrap();
